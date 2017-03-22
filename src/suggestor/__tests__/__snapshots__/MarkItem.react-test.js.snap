@@ -1,19 +1,19 @@
 exports[`<MarkItem /> if no search => render plain item (<a>{item}</a>) 1`] = `
 <a>
-  abcdefghijklmnopqrstuvwxyz
+  abcdefghijklmnñopqrstuvwxyz
 </a>
 `;
 
 exports[`<MarkItem /> if search but no match => render plain item 1`] = `
 <a>
-  abcdefghijklmnopqrstuvwxyz
+  abcdefghijklmnñopqrstuvwxyz
 </a>
 `;
 
 exports[`<MarkItem /> if search, then render pattern inside <strong> 1`] = `
 <a>
   <span>
-    abcdefghijklmnopqrstuvw
+    abcdefghijklmnñopqrstuvw
     <strong>
       x
     </strong>

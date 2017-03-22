@@ -15,3 +15,14 @@ export const getNumbersList = (init=0, end=100) => {
 };
 
 export const numbers = getNumbersList(0, 2000);
+
+export const spanishWords = [
+	'alcoba',
+	'acción',
+	'accionar',
+	'enseñanza',
+	'ícono',
+	'esdrújula',
+	'Miércoles',
+	'más'
+];

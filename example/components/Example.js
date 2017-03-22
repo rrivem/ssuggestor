@@ -1,7 +1,7 @@
 import React from 'react';
 import SSuggestor, { Suggestor } from '../../src/suggestor/Suggestor';
 import Section from './Section';
-import { countries, suggestions, numbers } from '../data/index';
+import { countries, suggestions, numbers, spanishWords } from '../data/index';
 
 const handleSSuggestorChange = (value) => console.info(value);
 
@@ -59,6 +59,11 @@ const Example = () => (
 
 		<Section title="Suggestor without clickout support" description="This one doesn`t close on click outside component. Only support clicks on component.">
 			<Suggestor list={suggestions} placeholder="type a letter or number..." tooltip="only support clicks on component" 
+				style={STYLE_WIDTH} onChange={handleSSuggestorChange} />
+		</Section>
+
+		<Section title="Suggestor ignores diacritics" description="Try searching words in Spanish without accents. For example, search for 'accion' will yield 'acción' and 'accionar'.">
+			<Suggestor list={spanishWords} placeholder="words in Spanish..." tooltip="search ignores diacritics" 
 				style={STYLE_WIDTH} onChange={handleSSuggestorChange} />
 		</Section>
 	</div>

@@ -20,22 +20,22 @@ describe('<List />', () => {
 		expect(tree).toMatchSnapshot();
 	});
 	it('render with suggestions list (open:false)', () => {
-		props = { ...props, list: ['suggest-1'] };
+		props = { ...props, list: [{ value:'suggest-1', searchValue:'suggest-1' }] };
 		const tree = renderer.create(<List {...props} />);
 		expect(tree).toMatchSnapshot();
 	});
 	it('render with suggestions list (open:true)', () => {
-		props = { ...props, list: ['suggest-1'], open:true };
+		props = { ...props, list: [{ value:'suggest-1', searchValue:'suggest-1' }], open:true };
 		const tree = renderer.create(<List {...props} />);
 		expect(tree).toMatchSnapshot();
 	});
 	it('render with suggestions list (open:true, index:0)', () => {
-		props = { ...props, list: ['suggest-0', 'suggest-1'], open:true };
+		props = { ...props, list: [{ value:'suggest-0', searchValue:'suggest-0' }, { value:'suggest-1', searchValue:'suggest-1' }], open:true };
 		const tree = renderer.create(<List {...props} />);
 		expect(tree).toMatchSnapshot();
 	});
 	it('render with suggestions list (open:true, index:1)', () => {
-		props = { ...props, list: ['suggest-0', 'suggest-1'], open:true, index:1 };
+		props = { ...props, list: [{ value:'suggest-0', searchValue:'suggest-0' }, { value:'suggest-1', searchValue:'suggest-1' }], open:true, index:1 };
 		const tree = renderer.create(<List {...props} />);
 		expect(tree).toMatchSnapshot();
 	});
@@ -58,7 +58,7 @@ test('List with empty list => no renders ul.dropdown-menu', () => {
 });
 
 test('List with open:true and not empty list => renders ul.dropdown-menu', () => {
-	const props = { list: ['x'], open: true, index: 0, onItemClick: f => f, onItemMouseEnter: f => f, value: '' };
+	const props = { list: [{ value:'x', searchValue:'x' }], open: true, index: 0, onItemClick: f => f, onItemMouseEnter: f => f, value: '' };
 
 	const wrapper = mount(<List {...props} />);
 
@@ -80,7 +80,7 @@ describe('List Component', () => {
 	describe('List with item X', () => {
 		const ITEM = 'X';
 		beforeEach(() => {
-			props.list.push(ITEM);
+			props.list.push({ value:ITEM, searchValue:ITEM });
 		});
 
 		it(`li's text should match item`, () => {

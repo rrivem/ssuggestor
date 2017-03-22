@@ -9,7 +9,11 @@ export const List = ({ open, list, index, value, onItemClick, onItemMouseEnter }
 );
 
 List.propTypes = {
-	list: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+	list: React.PropTypes.arrayOf(
+		React.PropTypes.shape({
+			value: React.PropTypes.string.isRequired,
+			searchValue: React.PropTypes.string.isRequired
+		})).isRequired,
 	open: React.PropTypes.bool.isRequired,
 	index: React.PropTypes.number.isRequired,
 	onItemClick: React.PropTypes.func.isRequired,

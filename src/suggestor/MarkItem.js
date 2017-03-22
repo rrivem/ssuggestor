@@ -2,12 +2,12 @@ import React from 'react';
 
 const MarkItem = ({ item, search }) => {
 	if (!search) {
-		return <a>{ item }</a>;
+		return <a>{ item.value }</a>;
 	}
 
-	let index = item.toLowerCase().indexOf(search.toLowerCase());
+	let index = item.searchValue.indexOf(search);
 	if (index === -1) {
-		return <a>{ item }</a>;	
+		return <a>{ item.value }</a>;	
 	}
 
 	let searchLength = search.length;
@@ -15,15 +15,18 @@ const MarkItem = ({ item, search }) => {
 	return (
 		<a>
 			<span>
-				{ item.substr(0, index) }
-				<strong>{ item.substr(index, searchLength) }</strong>
-				{ item.substr(index+searchLength, item.length) }
+				{ item.value.substr(0, index) }
+				<strong>{ item.value.substr(index, searchLength) }</strong>
+				{ item.value.substr(index+searchLength, item.length) }
 			</span>
 		</a>
 	);
 };
 MarkItem.propTypes = {
-	item: React.PropTypes.string.isRequired,
+	item: React.PropTypes.shape({
+		value: React.PropTypes.string.isRequired,
+		searchValue: React.PropTypes.string.isRequired
+	}).isRequired,
 	search: React.PropTypes.string.isRequired
 };
 
