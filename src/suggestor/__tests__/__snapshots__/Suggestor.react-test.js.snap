@@ -3,12 +3,13 @@ exports[`<Suggestor /> initial render with no suggestions 1`] = `
   className="input-group"
   onClick={[Function]}
   onKeyDown={[Function]}
-  style={undefined}
-  tabIndex="0">
+  style={undefined}>
   <input
     className="form-control"
     onChange={[Function]}
     placeholder={undefined}
+    required={false}
+    title={undefined}
     type="text"
     value="" />
   <span
@@ -31,17 +32,18 @@ exports[`<Suggestor /> initial render with no suggestions 1`] = `
 </div>
 `;
 
-exports[`<Suggestor /> initial render with suggestions 1`] = `
+exports[`<Suggestor /> initial render with suggestions (open list) 1`] = `
 <div
   className="input-group"
   onClick={[Function]}
   onKeyDown={[Function]}
-  style={undefined}
-  tabIndex="0">
+  style={undefined}>
   <input
     className="form-control"
     onChange={[Function]}
     placeholder={undefined}
+    required={false}
+    title={undefined}
     type="text"
     value="" />
   <span
@@ -66,7 +68,7 @@ exports[`<Suggestor /> initial render with suggestions 1`] = `
     style={
       Object {
         "cursor": "pointer",
-        "display": "none",
+        "display": "block",
         "maxHeight": 250,
         "minWidth": 30,
         "overflow": "auto",
@@ -86,6 +88,53 @@ exports[`<Suggestor /> initial render with suggestions 1`] = `
         suggest-1
       </a>
     </li>
+    <li
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+      style={
+        Object {
+          "backgroundColor": false,
+        }
+      }
+      value="suggest-2">
+      <a>
+        suggest-2
+      </a>
+    </li>
   </ul>
+</div>
+`;
+
+exports[`<Suggestor /> initial render with suggestions 1`] = `
+<div
+  className="input-group"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  style={undefined}>
+  <input
+    className="form-control"
+    onChange={[Function]}
+    placeholder={undefined}
+    required={false}
+    title={undefined}
+    type="text"
+    value="" />
+  <span
+    className="glyphicon glyphicon-triangle-bottom"
+    style={
+      Object {
+        "bottom": 0,
+        "color": "#ccc",
+        "cursor": "pointer",
+        "fontSize": 16,
+        "height": 14,
+        "margin": "auto",
+        "position": "absolute",
+        "right": 10,
+        "top": 0,
+        "zIndex": 4,
+      }
+    } />
+  
 </div>
 `;

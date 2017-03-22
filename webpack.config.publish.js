@@ -2,38 +2,49 @@
 
 const webpack = require('webpack');
 const packages = require('./package.json');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
 
 const NODE_ENV = 'production';
+
+const PATHS = {
+	src: path.join(__dirname, 'src'),
+	dist: path.join(__dirname, 'dist'),
+	cwd: __dirname
+};
 
 const envPluginConfig = new webpack.DefinePlugin({
 	'process.env': {
 		'NODE_ENV': JSON.stringify(NODE_ENV)
 	}
 });
+const cleanWebpackConfig = new CleanWebpackPlugin(['dist'], {
+	root: PATHS.cwd,
+	verbose: true,
+	dry: false,
+	exclude: ['ssuggestor.js']
+});
 
 module.exports = {
 	entry: {
-		ssugestor: __dirname + '/src/components/suggestor/Suggestor.js'
+		ssugestor: PATHS.src + '/suggestor/Suggestor.js'
 	},
 	output: {
-		filename: 'react-ssuggestor.js',
-		sourceMapFilename: '[file].map',
-		path: __dirname + '/dist',
-		libraryTarget: 'commonjs2'
+		filename: 'ssuggestor.js',
+		path: PATHS.dist,
+		libraryTarget: 'umd',
+		library: 'SSuggestor'
 	},
 	externals: {
-		'react': 'react',
-		'react-dom': 'react-dom'
+		react: {
+			root: 'React',
+			commonjs2: 'react',
+			commonjs: 'react',
+			amd: 'react'
+		}
 	},
 	target: 'node',
 	module: {
-		preLoaders: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: 'eslint'
-			}
-		],
 		loaders: [
 			{
 				test: /\.js$/,
@@ -45,9 +56,8 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [envPluginConfig],
+	plugins: [cleanWebpackConfig, envPluginConfig],
 	resolve: {
 		extensions: ['', '.js']
-	},
-	devtool: '#source-map'
+	}
 };

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
-// Todo: check this https://facebook.github.io/react/warnings/refs-must-have-owner.html
-
-export const withClickOut = WrappedComponent => {
+const withClickOut = WrappedComponent => {
 	class Wrapper extends Component {
 		constructor(...args){
 			super(...args);
 			this.handleClick = this.handleClick.bind(this);
+			this.focus = this.focus.bind(this);
 		}
 		componentDidMount() {
 			document.addEventListener('click', this.handleClick);
@@ -16,14 +14,17 @@ export const withClickOut = WrappedComponent => {
 			document.removeEventListener('click', this.handleClick);
 		}
 		handleClick(e) {
-			let node = ReactDOM.findDOMNode(this);
-			let wrapped = this.refs._wrapped;
-			if (!node.contains(e.target) && typeof wrapped.handleClickOut === 'function') {
+			let wrapped = this.refs.wrapped;			
+			if (!this.node.contains(e.target) && typeof wrapped.handleClickOut === 'function') {
 				wrapped.handleClickOut(e);
 			}
 		}
+		focus() {
+			//todo: refactor to hoc withFocus (keep in mind nested components)
+			this.refs.wrapped.focus();
+		}
 		render() {
-			return <WrappedComponent ref='_wrapped' {...this.props} />;
+			return <WrappedComponent reference={node=>this.node=node} ref='wrapped' {...this.props} />;
 		}
 	}
 	Wrapper.displayName = `ClickOut(${WrappedComponent.displayName || WrappedComponent.name})`;
